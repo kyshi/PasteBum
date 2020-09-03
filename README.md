@@ -12,13 +12,15 @@ PasteBum is a text share service. You can share plain text or code.
 I can't publish this site for now but you can test web site. If you report me bugs 
 i would be glad.
 
-1. Create a database as *notes.db*
-2. Open the *app.py* and change 8st line according to yourself.
-3. Run the *app.py*
-4. connect localhost:5000
+1. *pip install Flask* and *pip install Flask-SQLAlchemy*
+2. Create a database as *notes.db*
+3. Open the *app.py* and change 8st line according to yourself.
+4. Run the *app.py*
+5. connect localhost:5000
 
 ## Technologies
 - Python/Flask
+- Flask SQlAlchemy
 - HTML
 - CSS
 - BootStrap
