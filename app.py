@@ -1,18 +1,20 @@
-from flask import Flask, render_template, request, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
 import hashlib
+from datetime import datetime
 
+from flask import Flask, redirect, render_template, request, url_for
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Belgelerim/Projects/Flask Projects/PasteBum/notes.db'
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///notes.db"
 db = SQLAlchemy(app)
+
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
-@app.route("/note/<string:url>", methods=["POST","GET"])
+
+@app.route("/note/<string:url>", methods=["POST", "GET"])
 def create_note(url):
     if request.method == "POST":
         url = "add"
@@ -21,7 +23,12 @@ def create_note(url):
         syntax = request.form.get("syntax")
         now = datetime.now()
         url_seed = f"{str(now)}+{title}+{content}"
-        newNote = Note(title=title, content=content, syntax=syntax, url=hashlib.sha1(url_seed.encode("utf-8")).hexdigest())
+        newNote = Note(
+            title=title,
+            content=content,
+            syntax=syntax,
+            url=hashlib.sha1(url_seed.encode("utf-8")).hexdigest(),
+        )
         db.session.add(newNote)
         db.session.commit()
         return redirect(url_for("create_note", url=newNote.url))
@@ -29,9 +36,15 @@ def create_note(url):
     elif url != "add":
         note = Note.query.filter_by(url=url).first()
         line = ""
-        for i in range(1, note.content.count("\n")+2):
+        for i in range(1, note.content.count("\n") + 2):
             line += f"{i}\n"
-        return render_template("note.html", title=note.title, content=note.content, syntax=note.syntax, line=line)
+        return render_template(
+            "note.html",
+            title=note.title,
+            content=note.content,
+            syntax=note.syntax,
+            line=line,
+        )
 
 
 class Note(db.Model):
@@ -43,4 +56,5 @@ class Note(db.Model):
 
 
 if __name__ == "__main__":
+    db.create_all()
     app.run(debug=True)
