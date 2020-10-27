@@ -9,7 +9,8 @@
 <body>
   <div style="margin-bottom: 10px;" class="container">
     <div align="center"><img src="{{url_for('static', filename='images/logo.png')}}" width="400"></div>
-    <p>Please read the <a href="/informative_text">informative text</a>.
+    <p>This website is a platform for text sharing and it is open to everyone. The permanence of the data shared is not guaranteed and could be deleted at any time. The legal responsibility of any illegal data shared on the website is not the website's responsibility. Also, anything shared is open to anyone and everyone can see it. If there is any content that you think is problematic you can reach us at blabla@blamail.com and send us the URL</p>
+    Thanks to <a href="{{url_for('static', filename='contributors.html')}}">contributors</a><br><br><br>
     <form action="/note/add " method="POST">
         <form>
             <div class="form-group">

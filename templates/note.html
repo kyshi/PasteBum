@@ -10,36 +10,37 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css"
     />
-
-    <link rel="stylesheet" href="{{url_for('static', filename='css/note.css')}}">
-    <script src="{{url_for('static', filename='js/copy.js')}}"></script>
     <meta charset="UTF-8" />
     <title>Note - {{title}}</title>
   </head>
   <body>
-      <div id="alert">
-        <span id="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-        <img src="{{url_for('static', filename='images/successfully.png')}}" width="25"><b>Successfully!</b>&ensp;Content copied successfully.
-      </div>
-      <div style="margin-top: 30px" class="container">
+    <div style="margin-top: 30px" class="container">
       <h1>{{title}}</h1>
-      <br/>
-      <div class="container" id="content">
-        <table style="float: left;">
+      <br />
+      <div
+        class="container"
+        style="
+          border: 1px solid #bbb;
+          background-color: #ddd;
+          padding: 10px;
+          border-radius: 5px;
+          line-height: 16px;
+          font-size: 15px;
+        "
+      >
+        <table style="float: left; margin-top: 5px">
             <table>
                 <tr>
                   <th><pre style="width: 20px; overflow: hidden;">
-<!--             --><div style="color: #ADADAD;">{{line}}</div>
-<!--             --><th><pre>
-<!--             --><code class="{{syntax}}" id="text">{{content}}</code>
-<!--             --></pre></th></pre></th>
-                </tr> 
-            </table>
-          </table>
-          <p id="copy" onClick="copyElementText('text', 'alert')">Copy Text</p>
+<div style="color: #ADADAD;">{{line}}</div>
+<th><pre>
+<code class="{{syntax}}" style="background: #ddd !important;">{{content}}</code>
+</pre></th>
+                </tr>
+               
+        </table>
       </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
     <script>
       hljs.initHighlightingOnLoad();
