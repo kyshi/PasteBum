@@ -46,6 +46,21 @@ def create_note(url):
             line=line,
         )
 
+@app.route("/contributors")
+def contributors():
+    return render_template("contributors.html")
+
+@app.route("/pastebum")
+def pastebum():
+    return render_template("pastebum.html")
+
+@app.route("/informative_text")
+def informative_text():
+    return render_template("informative_text.html")
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -57,4 +72,4 @@ class Note(db.Model):
 
 if __name__ == "__main__":
     db.create_all()
-    app.run(debug=True)
+    app.run()
