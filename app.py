@@ -1,7 +1,7 @@
 import hashlib
 from datetime import datetime
 
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, url_for, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -17,7 +17,6 @@ def index():
 @app.route("/note/<string:url>", methods=["POST", "GET"])
 def create_note(url):
     if request.method == "POST":
-        url = "add"
         title = request.form.get("title")
         content = request.form.get("content")
         syntax = request.form.get("syntax")
@@ -33,7 +32,7 @@ def create_note(url):
         db.session.commit()
         return redirect(url_for("create_note", url=newNote.url))
 
-    elif url != "add":
+    elif request.method == "GET":
         note = Note.query.filter_by(url=url).first()
         line = ""
         for i in range(1, note.content.count("\n") + 2):
@@ -45,6 +44,28 @@ def create_note(url):
             syntax=note.syntax,
             line=line,
         )
+
+@app.route("/api/<string:url>")
+def api(url):
+    note = url.split("!$")
+    title = note[0]
+    content = note[1]
+    syntax = note[2]
+    now = datetime.now()
+    url_seed = f"{str(now)}+{title}+{content}"
+
+    newNote = Note(
+        title=title,
+        content=content,
+        syntax=syntax,
+        url=hashlib.sha1(url_seed.encode("utf-8")).hexdigest(),
+    )
+    db.session.add(newNote)
+    db.session.commit()
+    url_json = [{
+        "url": hashlib.sha1(url_seed.encode("utf-8")).hexdigest()
+    }]
+    return jsonify(url_json)
 
 @app.route("/contributors")
 def contributors():
