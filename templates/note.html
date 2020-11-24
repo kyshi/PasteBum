@@ -24,12 +24,19 @@
       <div style="margin-top: 30px" class="container">
       <h1>{{title}}</h1>
       <br/>
+      <details>
+        <summary>Details</summary>
+        <b>Syntax:</b> {{syntax}}<br>
+        <b>Creation Date:</b> {{date}}<br>
+        <b>Data Size (byte):</b> {{data_size}}
+      </details>
+      <br/>
       <div class="container" id="content">
         <table style="float: left;">
             <table>
                 <tr>
-                  <th><pre style="width: 20px; overflow: hidden;">
-<!--             --><div style="color: #ADADAD;">{{line}}</div>
+                  <th><pre style="overflow: hidden;">
+<!--             --><div style="color: #ADADAD; text-align: right">{{line}}</div>
 <!--             --><th><pre>
 <!--             --><code class="{{syntax}}" id="text">{{content}}</code>
 <!--             --></pre></th></pre></th>

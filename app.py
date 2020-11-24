@@ -1,4 +1,4 @@
-import hashlib
+from hashlib import blake2b
 from datetime import datetime
 
 from flask import Flask, redirect, render_template, request, url_for, request, jsonify
@@ -24,11 +24,17 @@ def create_note(url):
         syntax = request.form.get("syntax")
         now = datetime.now()
         url_seed = f"{str(now)}+{title}+{content}"
+        line = ""
+        for i in range(1, content.count("\n") + 2):
+            line += f"{i}\n"
         newNote = Note(
             title=title,
             content=content,
             syntax=syntax,
-            url=hashlib.sha1(url_seed.encode("utf-8")).hexdigest(),
+            date=now,
+            data_size=len(content.replace("\n", ""))+len(title)+1-int(line[-2]),
+            line=line,
+            url=blake2b(url_seed.encode("utf-8"), digest_size=5).hexdigest(),
         )
         db.session.add(newNote)
         db.session.commit()
@@ -36,15 +42,14 @@ def create_note(url):
 
     elif request.method == "GET":
         note = Note.query.filter_by(url=url).first()
-        line = ""
-        for i in range(1, note.content.count("\n") + 2):
-            line += f"{i}\n"
         return render_template(
             "note.html",
             title=note.title,
             content=note.content,
             syntax=note.syntax,
-            line=line,
+            date=note.date[:19],
+            data_size=note.data_size,
+            line=note.line,
         )
 
 @app.route("/api/<string:url>")
@@ -55,17 +60,23 @@ def api(url):
     syntax = note[2]
     now = datetime.now()
     url_seed = f"{str(now)}+{title}+{content}"
+    line = ""
+    for i in range(1, content.count("\n") + 2):
+        line += f"{i}\n"
 
     newNote = Note(
         title=title,
         content=content,
         syntax=syntax,
-        url=hashlib.sha1(url_seed.encode("utf-8")).hexdigest(),
+        date=now,
+        data_size=len(content)+len(title),
+        line=line,
+        url=blake2b(url_seed.encode("utf-8"), digest_size=5).hexdigest(),
     )
     db.session.add(newNote)
     db.session.commit()
     url_json = [{
-        "url": hashlib.sha1(url_seed.encode("utf-8")).hexdigest()
+        "url": blake2b(url_seed.encode("utf-8"), digest_size=5).hexdigest()
     }]
     return jsonify(url_json)
 
@@ -90,9 +101,12 @@ class Note(db.Model):
     title = db.Column(db.String(50))
     content = db.Column(db.Text)
     syntax = db.Column(db.String(30))
+    date = db.Column(db.String(30)) 
+    data_size = db.Column(db.Integer)
+    line=db.Column(db.Text)
     url = db.Column(db.String(20))
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  
     db.create_all()
     app.run()
