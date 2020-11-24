@@ -12,8 +12,8 @@ PasteBum is a text share service. You can share plain text or code.
 ## Features (version 0.5 | alpha)
 Added 'Details' section in the note page.<br>
 Added Open Graph meta tags in the index page.<br>
-Url of note shortened<br>
-Small adjustments<br>
+Url of note shortened.<br>
+Small adjustments.<br>
 
 ## Technologies
 - Python/Flask
