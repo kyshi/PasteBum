@@ -2,23 +2,24 @@
 ![PasteBum](https://i.hizliresim.com/4i3SVl.png)
 
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Version](https://img.shields.io/badge/version-0.5-blue)
+![Version](https://img.shields.io/badge/version-0.6-blue)
 ![Status](https://img.shields.io/badge/status-alpha-red)
 
 ## What is PasteBum?
-PasteBum is a text share service. You can share plain text or code.
-***https://pastebum.herokuapp.com/***
+[PasteBum](https://pastebum.herokuapp.com/) is a text share service. You can share plain text or code.
 
-## Features (version 0.5 | alpha)
-Added 'Details' section in the note page.<br>
-Added Open Graph meta tags in the index page.<br>
-Url of note shortened.<br>
+## Features (version 0.6 | alpha)
+API system renewed.<br>
+Created API documentation.<br>
 Small adjustments.<br>
 
 ## Technologies
-- Python/Flask
-- Flask SQlAlchemy
-- HTML
-- CSS
-- BootStrap
-- highlight.js
+- Python/Flask (Main/Backend)
+- Flask SQlAlchemy (ORM structure)
+- Flask CORS (Cors Error)
+- SQLite (Database)
+- HTML/CSS (Frontend)
+- Javascript (Frontend)
+- BootStrap (Frontend)
+- highlight.js (Syntax Highlight)
+- Heroku (Deployer)

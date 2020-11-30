@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <meta property="og:title" content="PasteBum API Documentation" />
+    <meta property="og:url" content="https://pastebum.herokuapp.com/api/documentation" />
+    <meta property="og:description" content="PasteBum API allows you to use PasteBum features. You can using only url, create a note or view features of a note. These, come as json data." />
+    <meta property="og:image" content="https://i.hizliresim.com/4i3SVl.png" />
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/api_doc.css')}}">
+    <link rel="stylesheet" href="../static/css/api_doc.css">
+    <meta charset="UTF-8" />
+    <title></title>
+  </head>
+  <body>
+      <h1 id="title">PasteBum API Documentation</h1>
+      <p id="first-text">PasteBum API allows you to use PasteBum features. You can using only url, create a note or view features of a note. These, come as json data.</p>
+      <h3>Table of Contents</h3>
+      <ul class="list">
+          <li><a href="#CreateNote">Create Note</a></li>
+          <li><a href="#ViewNote">View Note</a></li>
+      </ul>
+
+      <a name="CreateNote"><h2><u>Create Note</u></h2></a>
+      <p><b>Path:</b> <code>/api/create_note/&lt;title&gt;/&lt;content&gt;/&lt;syntax&gt;</code></p>
+      <p>
+        <h3>Parameters</h3>
+        <b>title: </b>Title of note. <br>
+        <b>content: </b>Content of note. <br>
+        <b>syntax: </b>Syntax of note
+      </p>
+      <br>
+      <p>
+        <h3>Return</h3>
+        <p>
+          Return a url as json data. <br>
+          <b>Example: </b> <code>[{"url":"f70303d3ed"}]</code>
+        </p>
+      </p>
+
+      <a name="ViewNote"><h2><u>View Note</u></h2></a>
+      <p><b>Path:</b> <code>/api/view_note/&lt;url&gt;</code></p>
+      <p>
+        <h3>Parameters</h3>
+        <b>url: </b>Url of note.
+      </p>
+      <br>
+      <p>
+        <h3>Return</h3>
+        <p>
+          Return features of the note as json data. <br>
+          <b>Example: </b><code>[{"content":"lorem ipsum dolor sit amet","details":[{"data_size":37,"date":"2020-11-27 17:01:31","line":"1\n"}],"syntax":"plain text","title":"Lorem Ipsum","url":"ba9c2f3e14"}]</code>
+        </p>
+      </p>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+#title{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 36px;
+}
+
+.list{
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+#first-text{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 24px;
+}
+
+p{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+}
+
+h2{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    margin-top: 100px;
+}
+
+h3{
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+code{
+    background-color: #eee;
+}

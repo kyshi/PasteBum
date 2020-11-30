@@ -1,6 +1,5 @@
 from hashlib import blake2b
 from datetime import datetime
-
 from flask import Flask, redirect, render_template, request, url_for, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -52,12 +51,11 @@ def create_note(url):
             line=note.line,
         )
 
-@app.route("/api/<string:url>")
-def api(url):
-    note = url.split("!$")
-    title = note[0]
-    content = note[1]
-    syntax = note[2]
+@app.route("/api/create_note/<string:title>/<string:content>/<string:syntax>")
+def api_crete_note(title, content, syntax):
+    title = title
+    content = content
+    syntax = syntax
     now = datetime.now()
     url_seed = f"{str(now)}+{title}+{content}"
     line = ""
@@ -75,10 +73,38 @@ def api(url):
     )
     db.session.add(newNote)
     db.session.commit()
-    url_json = [{
+    json_data = [{
         "url": blake2b(url_seed.encode("utf-8"), digest_size=5).hexdigest()
     }]
-    return jsonify(url_json)
+    return jsonify(json_data)
+
+@app.route("/api/view_note/<string:url>")
+def api_view_note(url):
+    note = Note.query.filter_by(url=url).first()
+    title = note.title,
+    content = note.content,
+    syntax = note.syntax,
+    date = note.date[:19],
+    data_size = note.data_size,
+    line = note.line,
+    json_data = [{
+        "url": url,
+        "title": title[0],
+        "content": content[0],
+        "syntax": syntax[0],
+        "details":[
+            {
+                "date": date[0],
+                "data_size": data_size[0],
+                "line": line[0]
+            }
+        ]
+    }]
+    return jsonify(json_data)
+
+@app.route("/api/documentation")
+def api_doc():
+    return render_template("api_doc.html")
 
 @app.route("/contributors")
 def contributors():
