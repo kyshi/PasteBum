@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: Nunito;
+}
+
+.m-section {
+    margin: 20px;
+}
+
+.m-textfield-inner {
+    outline: none;
+    border: none;
+    border-radius: 0;
+
+    background: transparent;
+    color: var(--fg-color);
+
+    width: 300px; /* altta m-textfield'a verilen width ile aynı */
+}
+
+.m-textfield {
+    position: relative;
+    display: inline-block;
+
+    width: 300px;
+}
+
+.m-textfield-line {
+    background: var(--fg-color2);
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1.5px;
+    height: 1.5px;
+
+    transition: 0.3s;
+}
+
+.m-textfield-line::after {
+    content: '';
+    background: var(--accent-color);
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    transform: scaleX(0);
+
+    transition: 0.3s;
+}
+
+.m-textfield-inner:focus ~ .m-textfield-line::after,
+.m-textfield-inner:not(:placeholder-shown) ~ .m-textfield-line::after {
+    transform: scaleX(1);
+    box-shadow: 0 0 3px var(--accent-color);
+}
+
+/* .m-textfield-inner:focus ~ .m-textfield-line {
+    background: var(--accent-color);
+} */
+
+.m-textfield-holder {
+    pointer-events: none;
+
+    font-size: 0.85rem;
+
+    position: absolute;
+    left: 1px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    transition: 0.3s;
+}
+
+.m-textfield-inner:focus ~ .m-textfield-holder,
+.m-textfield-inner:not(:placeholder-shown) ~ .m-textfield-holder {
+    transform-origin: 0 -200%;
+    display: none;
+    color: var(--accent-color)
+}
+
+.m-primary-btn {
+    cursor: pointer;
+
+    background: var(--accent-color);
+    outline: none;
+    border: none;
+    padding: 7px 25px;
+
+    font-size: 1rem;
+    font-weight: 400;
+
+    border-radius: 6px;
+
+    transition: 0.3s;
+}
+
+.m-primary-btn:hover {
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
+input:not([type=range]):not(.m-textfield-inner), textarea, select, .selection-menu, .selection-items {
+    background: var(--bg-color2);
+    color: var(--fg-color);
+    outline: none;
+    margin: 2px;
+    padding: 4px 6px;
+
+    border: 2px solid var(--bg-color3);
+    border-radius: 3px;
+
+    transition: 0.3s box-shadow;
+}
+
+input:not([type=range]):not([type=button]):not(.m-textfield-inner):focus, textarea:focus {
+    box-shadow: 0 0 10px 1px var(--accent-color);
+    z-index: 5;
+}
+
+.m-select {
+    display: none;
+}
+
+.selection-menu {
+    position: relative;
+
+    cursor: pointer;
+
+    width: 200px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5px 10px;
+
+    font-size: 0.9rem;
+    color: var(--fg-color2);
+}
+
+.selection-menu i {
+    text-align: right;
+    transition: .2s;
+}
+
+.selection-menu .selection-text, .selection-menu i {
+    pointer-events: none;
+}
+
+.selection-text {
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    flex: 1 1 auto;
+}
+
+.selection-menu:hover i, .selection-menu.open i {
+    color: var(--accent-color);
+    text-shadow: 0 0 10px var(--accent-color);
+}
+
+.selection-items {
+    position: absolute;
+    left: -4px;
+    right: -4px;
+    top: 100%;
+
+    border-top: 0;
+
+    overflow: hidden;
+    visibility: hidden;
+
+    max-height: 0px;
+    transition: .2s;
+}
+
+.selection-items.selected + .selection-text {
+    color: #ddd;
+    font-weight: bold;
+}
+
+.selection-menu.open > .selection-items {
+    max-height: 200px;
+    overflow-y: scroll;
+
+    visibility: visible;
+}
+
+.selection-item {
+    padding: 10px 15px;
+    padding-left: 8px;
+
+    display: flex;
+    align-items: center;
+
+    overflow-wrap: anywhere;
+
+    font-family: 'Roboto Mono';
+    font-weight: 400;
+    font-size: 0.79rem;
+}
+
+.selection-item:hover {
+    background: #33383b
+}
+
+.selection-item > img {
+    width: 25px;
+    border-radius: 50%;
+
+    margin-right: 11px;
+}

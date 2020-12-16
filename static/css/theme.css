@@ -1,0 +1,17 @@
+:root{
+  --focus-border-color: #0084ffc5;
+}
+
+.form-control:focus{
+  border-color: var(--focus-border-color);
+  box-shadow: none;
+}
+
+.theme-button{
+  cursor: pointer;
+  position: relative;
+  margin-top: 5px;
+  float: right;
+  right: 15px;
+  font-family: 'Courier New', Courier, monospace;
+}

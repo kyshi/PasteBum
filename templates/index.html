@@ -1,48 +1,108 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css" integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">
     <meta charset="UTF-8">
     <!--link rel="icon" href="../static/images/logo.png" type="image/x-icon">-->
+    <meta property="og:site_name" content="PasteBum" />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="PasteBum" />
     <meta property="og:url" content="https://pastebum.herokuapp.com/" />
     <meta property="og:description" content="PasteBum is a text/code share service.">
     <meta property="og:image" content="https://i.hizliresim.com/4i3SVl.png" />
     <meta content="#000" data-react-helmet="true" name="theme-color">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/global.css">
     <title>PasteBum</title>
 </head>
 <body>
-  <div style="margin-bottom: 10px;" class="container">
-    <div align="center"><img src="{{url_for('static', filename='images/logo.png')}}" width="400"></div>
-    <p>Please read the <a href="/informative_text">informative text</a>.
-    <form action="/note/add " method="POST">
-        <form>
-            <div class="form-group">
-              <input name="title" type="text" class="form-control" placeholder="Enter the title">
+  <div class="container">
+    <center>
+      <img src="{{url_for('static', filename='images/logo_white.png')}}" width="300">
+      <p>Please read the <a href="/informative_text">informative text</a>.</p>
+      <form action="/note/add " method="POST">
+        <div class="m-section" style="margin-top: 50px;">
+          <div class="m-textfield">
+            <input name="title" type="text" class="m-textfield-inner" placeholder=" " autocomplete="off">
+            <span class="m-textfield-holder">Enter the title</span>
+            <span class="m-textfield-line"></span>
+          </div>
+        </div>
+        <div class="m-section">
+          <select name="syntax" class="m-select">
+            <option value="plain text">Plain Text</option>
+            <option value="c">C</option>
+            <option value="cpp">C++</option>
+            <option value="csharp">C#</option>
+            <option value="css">CSS</option>
+            <option value="dart">Dart</option>
+            <option value="go">Go</option>
+            <option value="html">HTML</option>
+            <option value="java">Java</option>
+            <option value="javascript">Javascript</option>
+            <option value="python">Python</option>
+          </select>
+          
+          <div class="selection-menu">
+            <div class="selection-items">
+              <p class="selection-item">Plain Text</p>
+              <p class="selection-item">C</p>
+              <p class="selection-item">C++</p>
+              <p class="selection-item">C#</p>
+              <p class="selection-item">CSS</p>
+              <p class="selection-item">Dart</p>
+              <p class="selection-item">Go</p>
+              <p class="selection-item">HTML</p>
+              <p class="selection-item">Java</p>
+              <p class="selection-item">Javascript</p>
+              <p class="selection-item">Python</p>
             </div>
-            <div class="form-group">
-              <select name="syntax">
-                <option value="plain text">Plain Text</option>
-                <option value="c">C</option>
-                <option value="cpp">C++</option>
-                <option value="csharp">C#</option>
-                <option value="css">CSS</option>
-                <option value="dart">Dart</option>
-                <option value="go">Go</option>
-                <option value="html">HTML</option>
-                <option value="java">Java</option>
-                <option value="javascript">Javascript</option>
-                <option value="python">Python</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <textarea name="content" type="textarea" class="form-control" placeholder="Enter the content" style="height: 300px;"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Bum!</button>
-        </form>
-    </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+            <p class="selection-text">Plain Text</p>
+            <i class="fa fa-caret-down"></i>
+          </div>
+        </div>
+        <div class="m-section">
+          <textarea name="content" type="textarea" class="m-textarea" placeholder="Enter the content" style="height: 300px; width: 700px;"></textarea>
+        </div>
+        <button type="submit" class="m-primary-btn">Bum!</button>
+      </form>
+    </center>
+  </div>
+<script>
+  document.addEventListener('click', event => {
+      if (!event.target.classList.contains('selection-menu')) {
+          document.querySelectorAll(".selection-menu").forEach(menu => {
+              menu.classList.remove('open');
+          });
+      }
+  });
+
+  document.querySelectorAll(".selection-menu").forEach(menu => {
+      menu.addEventListener('click', () => {
+          menu.classList.toggle('open');
+      });
+
+      menu.querySelectorAll(".selection-item").forEach(item => {
+          item.addEventListener('click', () => {
+              menu.querySelectorAll(".selection-text").forEach((text) => {
+                  // text.innerText = item.innerText;
+                  text.innerHTML = item.innerHTML;
+
+                  item.parentElement.classList.add('selected');
+
+                  let index = 0;
+                  let sibling = item.previousElementSibling;
+                  while (sibling) {
+                    index++;
+                    sibling = sibling.previousElementSibling;
+                  }
+
+                  item.parentElement.parentElement.previousElementSibling.selectedIndex = index;
+              });
+          });
+      });
+  });
+</script>
 </body>
 </html>

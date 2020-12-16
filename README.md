@@ -8,18 +8,15 @@
 ## What is PasteBum?
 [PasteBum](https://pastebum.herokuapp.com/) is a text share service. You can share plain text or code.
 
-## Features (version 0.6 | alpha)
-API system renewed.<br>
-Created API documentation.<br>
-Small adjustments.<br>
+## Features (version 0.7 | alpha)
+Big frontend update.<br>
 
 ## Technologies
 - Python/Flask (Main/Backend)
-- Flask SQlAlchemy (ORM structure)
+- Flask SQlAlchemy (ORM Structure)
 - Flask CORS (Cors Error)
 - SQLite (Database)
 - HTML/CSS (Frontend)
 - Javascript (Frontend)
-- BootStrap (Frontend)
 - highlight.js (Syntax Highlight)
 - Heroku (Deployer)

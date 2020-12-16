@@ -1,33 +1,62 @@
+:root{
+  --background-color-textbox: #2B2F33;
+  --color-linenumber: #eee;
+  --color-border: #1C1D20;
+  --color-text: #FFF;
+  --color-copytext: #FFF;
+  --color-title: #FFF;
+  --color-details:  #FFF;
+}
+
+*{
+  text-align: left;
+}
+
+#box{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
 #content{
-  border: 1px solid #bbb;
-  background-color: #eee;
+  border: 1px solid var(--color-border);
+  background-color: var(--background-color-textbox);
   padding-top: 15px;
   border-radius: 5px;
   line-height: 16px;
   font-size: 15px;
+  padding-left: 15px;
 }
 
 #text{
-  background: #eee !important;
+  background: var(--background-color-textbox) !important;
   font-family: monospace;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 400;
   margin-left: 10px;
+  color: var(--color-text);
 }
 
-#copy:hover{
+#copy-text{
+  color: var(--color-copytext);
+}
+
+#copy-text:hover{
   text-decoration: underline;
   cursor: pointer;
 }
 
+
+#details{
+  color: var(--color-details);
+}
 /*COPY ALERT BOX*/
 /* The alert message box */
 #alert {
   padding: 20px;
-    background-color: rgb(1, 87, 1);
-    color: white;
-    margin-bottom: 15px;
-    display: none;
+  background-color: rgba(1, 87, 1);
+  color: white;
+  margin-bottom: 15px;
+  display: none;
 }
   
 /* The close button */
@@ -56,4 +85,9 @@
 
 .hljs-params{
   color: darkgoldenrod;
+}
+
+.title{
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-title);
 }

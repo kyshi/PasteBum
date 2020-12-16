@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg-color: #353535;
+    --bg-color2: #2b2f33;
+    --bg-color3: #1c1d20;
+    --fg-color: #dddddd;
+    --fg-color2: #999999;
+    --accent-color: #ffcf00;
+}
+
+::-webkit-scrollbar {
+    background: #111;
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-corner {
+    background: #222;
+}
+
+
+body {
+    background: var(--bg-color);
+    color: var(--fg-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-color);
+}
+
+a:hover{
+    text-decoration: underline;
+}
