@@ -2,7 +2,7 @@
 ![PasteBum](https://i.hizliresim.com/4i3SVl.png)
 
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Version](https://img.shields.io/badge/version-0.6-blue)
+![Version](https://img.shields.io/badge/version-0.7-blue)
 ![Status](https://img.shields.io/badge/status-alpha-red)
 
 ## What is PasteBum?
