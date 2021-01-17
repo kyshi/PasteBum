@@ -1,5 +1,5 @@
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <!--link rel="icon" href="../static/images/logo.png" type="image/x-icon">-->
     <meta property="og:title" content="PasteBum API Documentation" />
@@ -9,34 +9,48 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/api_doc.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/global.css')}}">
     <title>PasteBum API Documentation</title>
-  </head>
-  <body>
-      <h1 id="title">PasteBum API Documentation</h1>
-      <p id="first-text">PasteBum API allows you to use PasteBum features. You can using only url, create a note or view features of a note. These, come as json data.</p>
-      <h3>Table of Contents</h3>
-      <ul class="list">
-          <li><a href="#CreateNote">Create Note</a></li>
-          <li><a href="#ViewNote">View Note</a></li>
-      </ul>
+</head>
+<body>
+  <div id="main">
+    <h1 id="title">PasteBum API Documentation</h1>
+    <p id="first-text">PasteBum API allows you to use PasteBum features. You can create a note or view features of a note. These, come as json data.</p>
+    
+    <h3>Table of Contents</h3>
+    <ul class="list">
+      <li><a href="#CreateNote">Create Note</a></li>
+      <li><a href="#ViewNote">View Note</a></li>
+      <li><a href="#Errors">Errors</a>
+        <ul>
+          <li><a href="#RateLimit">Rate Limit</a></li>
+          <li><a href="#InvalidUrl">Invalid Url</a></li>
+          <li><a href="#InvalidSyntax">Invalid Syntax</a></li>
+        </ul>
+      </li>
+    </ul>
 
+    <div class="content">
       <a name="CreateNote"><h2><u>Create Note</u></h2></a>
+      <p>Create a note.</p>
       <p><b>Path:</b> <code>/api/create_note/&lt;title&gt;/&lt;content&gt;/&lt;syntax&gt;</code></p>
       <p>
         <h3>Parameters</h3>
         <b>title: </b>Title of note. <br>
         <b>content: </b>Content of note. <br>
-        <b>syntax: </b>Syntax of note
+        <b>syntax: </b>Syntax of note.
       </p>
       <br>
       <p>
         <h3>Return</h3>
         <p>
-          Return a url as json data. <br>
-          <b>Example: </b> <code>[{"url":"f70303d3ed"}]</code>
+          Return the url of created note as json data. <br>
+          <b>Example: </b> <code>{"url":"f70303d3ed"}</code>
         </p>
       </p>
+    </div>
 
+    <div class="content">
       <a name="ViewNote"><h2><u>View Note</u></h2></a>
+      <p>View features of a note.</p>
       <p><b>Path:</b> <code>/api/view_note/&lt;url&gt;</code></p>
       <p>
         <h3>Parameters</h3>
@@ -47,8 +61,63 @@
         <h3>Return</h3>
         <p>
           Return features of the note as json data. <br>
-          <b>Example: </b><code>[{"content":"lorem ipsum dolor sit amet","details":[{"data_size":37,"date":"2020-11-27 17:01:31","line":"1\n"}],"syntax":"plain text","title":"Lorem Ipsum","url":"ba9c2f3e14"}]</code>
+          <b>Example: </b><code>{"content":"lorem ipsum dolor sit amet","details":[{"data_size":37,"date":"2020-11-27 17:01:31","line":"1\n"}],"syntax":"plain text","title":"Lorem Ipsum","url":"ba9c2f3e14"}</code>
         </p>
       </p>
-  </body>
+    </div>
+
+    <a name="Errors"><h1 id="title2"><u>Errors</u></h1></a>
+    <p>Can be errors because of Wrong usage of API. These errors return as json. This json structure like this: <code>{"error": "Cause of error"}</code></p>  
+    <div class="content">
+      <a name="RateLimit"><h2><u>Rate Limit</u></h2></a>
+      <p>If you exceeded rate limit, will return this error.</p>
+      <p>
+        <h3>Parameters</h3>
+        <b>error: </b>Too many request.
+      </p>
+      <br>
+      <p>
+        <h3>Return</h3>
+        <p>
+          Return error as a json. <br>
+          <b>Example: </b><code>{"error": "Too many request."}</code>
+        </p>
+      </p>
+    </div>
+
+    <div class="content">
+      <a name="InvalidUrl"><h2><u>Invalid Url</u></h2></a>
+      <p>If you enter not exsist url, will return this error.</p>
+      <p>
+        <h3>Parameters</h3>
+        <b>error: </b>Invalid url.
+      </p>
+      <br>
+      <p>
+        <h3>Return</h3>
+        <p>
+          Return error as a json.<br>
+          <b>Example: </b><code>{"error": "Invalid url. "}</code>
+        </p>
+      </p>
+    </div>
+
+    <div class="content">
+      <a name="InvalidSyntax"><h2><u>Invalid Syntax</u></h2></a>
+      <p>If you enter not exsist syntax, will return this error.</p>
+      <p>
+        <h3>Parameters</h3>
+        <b>error: </b>Invalid syntax.
+      </p>
+      <br>
+      <p>
+        <h3>Return</h3>
+        <p>
+          Return error as a json.<br>
+          <b>Example: </b><code>{"error": "Invalid syntax. "}</code>
+        </p>
+      </p>
+    </div>
+  </div>
+</body>
 </html>

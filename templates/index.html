@@ -11,8 +11,8 @@
     <meta property="og:description" content="PasteBum is a text/code share service.">
     <meta property="og:image" content="https://i.hizliresim.com/4i3SVl.png" />
     <meta content="#000" data-react-helmet="true" name="theme-color">
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/global.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/global.css')}}">
     <title>PasteBum</title>
 </head>
 <body>
@@ -23,7 +23,7 @@
       <form action="/note/add " method="POST">
         <div class="m-section" style="margin-top: 50px;">
           <div class="m-textfield">
-            <input name="title" type="text" class="m-textfield-inner" placeholder=" " autocomplete="off">
+            <input name="title" type="text" class="m-textfield-inner" placeholder=" " autocomplete="off" maxlength="50" required>
             <span class="m-textfield-holder">Enter the title</span>
             <span class="m-textfield-line"></span>
           </div>

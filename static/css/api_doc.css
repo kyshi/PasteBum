@@ -1,27 +1,37 @@
 #title{
     font-family:Arial, Helvetica, sans-serif;
-    font-size: 36px;
+    font-size: 42px;
 }
 
-.list{
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif
+#title2{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 38px;
 }
 
 #first-text{
     font-family: 'Times New Roman', Times, serif;
     font-size: 24px;
+    margin-bottom: 50px;
+}
+
+.list{
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 100px;
+}
+
+.content{
+    margin-bottom: 100px;
 }
 
 p{
     font-family: 'Times New Roman', Times, serif;
-    font-size: 16px;
+    font-size: 17px;
 }
 
 h2{
     font-family:Arial, Helvetica, sans-serif;
     font-size: 28px;
-    margin-top: 100px;
 }
 
 h3{
